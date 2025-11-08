@@ -1,0 +1,10 @@
+node_modules
+.env
+.env.local
+.env.*.local
+dist
+server
+real-time-pair-code
+*.log
+.DS_Store
+
