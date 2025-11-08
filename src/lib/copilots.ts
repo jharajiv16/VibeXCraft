@@ -1,6 +1,15 @@
 // Client-side API functions for AI Copilots
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+// Get API URL from environment variable
+// In production, this should be set in Vercel environment variables
+const API_BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? '' : 'http://localhost:3001');
+
+// Validate API URL in production
+if (import.meta.env.PROD && !API_BASE_URL) {
+  console.error('❌ VITE_API_URL is not set in production!');
+  console.error('Please set VITE_API_URL in Vercel environment variables.');
+  console.error('Go to: Vercel Dashboard → Settings → Environment Variables');
+}
 
 export interface CopilotRequest {
   message: string;
