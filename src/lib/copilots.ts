@@ -4,11 +4,20 @@
 // In production, this should be set in Vercel environment variables
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
-// Validate API URL in production
-if (import.meta.env.PROD && !API_BASE_URL) {
-  console.error('❌ VITE_API_URL is not set in production!');
-  console.error('Please set VITE_API_URL in Vercel environment variables.');
-  console.error('Go to: Vercel Dashboard → Settings → Environment Variables');
+// Log API URL for debugging
+if (import.meta.env.PROD) {
+  if (import.meta.env.VITE_API_URL) {
+    console.log('✅ VITE_API_URL is set:', import.meta.env.VITE_API_URL);
+  } else {
+    console.error('❌ VITE_API_URL is not set in production!');
+    console.error('📝 To fix:');
+    console.error('   1. Go to Vercel Dashboard → Settings → Environment Variables');
+    console.error('   2. Add: VITE_API_URL=https://your-backend-url.onrender.com');
+    console.error('   3. Redeploy your frontend');
+    console.error('   4. See STEP_BY_STEP_FIX.md for detailed instructions');
+  }
+} else {
+  console.log('🔗 Development Mode - API URL:', API_BASE_URL);
 }
 
 export interface CopilotRequest {
