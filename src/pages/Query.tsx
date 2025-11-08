@@ -11,6 +11,7 @@ import {
   ArrowRight,
   X,
 } from "lucide-react";
+import Footer from "@/components/Footer";
 
 const FAQS = [
   {
@@ -260,6 +261,7 @@ const Query: React.FC = () => {
           </motion.div>
         )}
       </div>
+      <Footer />
     </section>
   );
 };

@@ -25,6 +25,8 @@ import {
   Bell,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import PricingSection from "../components/PricingSection";
+import Footer from "../components/Footer";
 
 import { ChevronLeft, ChevronRight } from "lucide-react"; 
 
@@ -283,10 +285,17 @@ const Dashboard: React.FC = () => {
   }, [paused]);
 
   // handlers
-  const handleCTA = (route: string) => {
-    // In a demo, navigate or just console
-    if (route.startsWith("/")) navigate(route);
-    else console.log("CTA:", route);
+  const handleCTA = (labelOrRoute: string) => {
+    const map: Record<string, string> = {
+      "Explore Workspace": "/ai/workspace",
+      "Start a Coding Room": "/ai/workspace",
+      "Meet Copilots": "/ai/copilot",
+      "Post a Project": "/ai/community",
+      "Activate Vibe Mode": "/ai/dashboard",
+      "Explore Repos": "/ai/projects",
+    };
+    const target = labelOrRoute.startsWith("/") ? labelOrRoute : (map[labelOrRoute] || "/ai/dashboard");
+    navigate(target);
   };
 
   return (
@@ -405,82 +414,7 @@ const Dashboard: React.FC = () => {
 </section>
 
 
-      <section className="mx-6 sm:mx-10 lg:mx-20 mb-24">
-      {/* Header */}
-      <div className="text-center mb-10">
-        <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#9B5CF5] to-[#00E0FF] bg-clip-text text-transparent">
-          Launch Center 🚀
-        </h2>
-        <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
-          Quickly start projects, host rooms, post updates, or ask your AI advisor —
-          all from one futuristic hub.
-        </p>
-      </div>
-
-      {/* Grid Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {QUICK_ACTIONS.map((a, idx) => (
-          <motion.div
-            key={idx}
-            whileHover={{ scale: 1.04, y: -6 }}
-            transition={{ duration: 0.3 }}
-            onClick={() => handleCTA(a.route)}
-            className="relative group p-7 rounded-3xl border border-white/10 bg-gradient-to-br from-[#0D0D0D]/80 to-[#1A1A1A]/70 backdrop-blur-xl cursor-pointer overflow-hidden shadow-[0_0_25px_rgba(0,224,255,0.05)] hover:shadow-[0_0_40px_rgba(155,92,245,0.25)] transition-all"
-            title={a.title}
-          >
-            {/* Glow border on hover */}
-            <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-[#9B5CF5]/40 transition-all duration-500"></div>
-
-            {/* Light sweep animation */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-              <div className="absolute -inset-1 bg-gradient-to-r from-transparent via-[#00E0FF]/10 to-transparent animate-[shine_2.5s_infinite]"></div>
-            </div>
-
-            {/* Content */}
-            <div className="flex items-start gap-5 relative z-10">
-              {/* Icon */}
-              <motion.div
-                whileHover={{ rotate: 6, scale: 1.08 }}
-                transition={{ type: "spring", stiffness: 200 }}
-                className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#9B5CF5]/20 to-[#00E0FF]/10 border border-white/10 flex items-center justify-center shadow-inner shadow-[#9B5CF5]/20"
-              >
-                {React.createElement(a.icon, {
-                  className:
-                    "w-8 h-8 text-[#00E0FF] group-hover:text-[#9B5CF5] transition-colors duration-300",
-                })}
-              </motion.div>
-
-              {/* Text */}
-              <div className="flex-1">
-                <h3 className="font-semibold text-lg mb-1 group-hover:text-[#00E0FF] transition-colors">
-                  {a.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                  {a.desc}
-                </p>
-
-                {/* Buttons */}
-                <div className="flex gap-3">
-                  <motion.button
-                    whileTap={{ scale: 0.95 }}
-                    className="px-4 py-1.5 rounded-md text-sm font-medium text-white bg-gradient-to-r from-[#9B5CF5] to-[#00E0FF] shadow-lg hover:shadow-[0_0_15px_rgba(155,92,245,0.4)] transition-all"
-                  >
-                    Open
-                  </motion.button>
-                  <motion.button
-                    whileTap={{ scale: 0.95 }}
-                    className="px-4 py-1.5 rounded-md text-sm border border-white/10 text-muted-foreground bg-[#121212]/60 hover:bg-[#1A1A1A] transition-all"
-                  >
-                    Demo
-                  </motion.button>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    </section>
-
+     
 
 
 
@@ -499,9 +433,7 @@ const Dashboard: React.FC = () => {
           <button className="px-4 py-2 rounded-md border border-border text-muted-foreground hover:bg-white/5 transition">
             Manage Copilots
           </button>
-          <button className="px-4 py-2 rounded-md bg-gradient-to-r from-[#9B5CF5] to-[#00E0FF] text-white font-medium hover:scale-105 transition">
-            Add New
-          </button>
+          
         </div>
       </div>
 
@@ -541,10 +473,10 @@ className={`snap-center min-w-[300px] p-6 rounded-2xl bg-gradient-to-br ${c.acce
 
               {/* Buttons */}
               <div className="flex gap-2">
-                <button className="flex-1 px-4 py-2 rounded-md bg-gradient-to-r from-[#9B5CF5] to-[#00E0FF] text-white text-sm font-medium hover:scale-105 transition">
+                <button onClick={() => navigate('/ai/copilot')} className="flex-1 px-4 py-2 rounded-md bg-gradient-to-r from-[#9B5CF5] to-[#00E0FF] text-white text-sm font-medium hover:scale-105 transition">
                   Activate
                 </button>
-                <button className="flex-1 px-4 py-2 rounded-md bg-[#181818]/80 border border-white/10 text-muted-foreground text-sm hover:bg-[#222] transition">
+                <button onClick={() => navigate('/ai/copilot')} className="flex-1 px-4 py-2 rounded-md bg-[#181818]/80 border border-white/10 text-muted-foreground text-sm hover:bg-[#222] transition">
                   Customize
                 </button>
               </div>
@@ -614,7 +546,7 @@ export default function Box() {
         className="snap-center min-w-[600px] max-w-[650px] rounded-3xl bg-gradient-to-br from-[#0d0d0d] to-[#111827] border border-white/10 shadow-glow-purple p-8 flex flex-col justify-between text-white/90 backdrop-blur-xl"
       >
         {/* Header */}
-        <div className="mb-6">
+        <div className="mb-24">
           <h3 className="text-2xl font-bold mb-1">{workspace.title}</h3>
           <p className="text-sm text-white/60">{workspace.desc}</p>
         </div>
@@ -638,10 +570,10 @@ export default function Box() {
           <div className="mt-4 flex items-center justify-between">
             <p className="text-xs text-white/40">Last run: {12 + i * 4}s ago</p>
             <div className="flex gap-2">
-              <button className="px-4 py-1.5 rounded-md bg-[#9B5CF5] text-sm font-medium text-white hover:bg-[#7C3AED]/80 transition-all">
+              <button onClick={() => navigate('/ai/copilot')} className="px-4 py-1.5 rounded-md bg-[#9B5CF5] text-sm font-medium text-white hover:bg-[#7C3AED]/80 transition-all">
                 Run
               </button>
-              <button className="px-4 py-1.5 rounded-md bg-[#1f1f1f] text-sm font-medium text-white/70 border border-white/10 hover:bg-[#2b2b2b]">
+              <button onClick={() => navigate('/ai/copilot')} className="px-4 py-1.5 rounded-md bg-[#1f1f1f] text-sm font-medium text-white/70 border border-white/10 hover:bg-[#2b2b2b]">
                 Open
               </button>
             </div>
@@ -667,10 +599,10 @@ export default function Box() {
         </p>
       </div>
       <div className="flex items-center gap-3">
-        <button className="px-4 py-2 rounded-md border border-border text-muted-foreground hover:bg-white/5 transition">
+        <button onClick={() => navigate('/ai/projects')} className="px-4 py-2 rounded-md border border-border text-muted-foreground hover:bg-white/5 transition">
           Explore
         </button>
-        <button className="px-4 py-2 rounded-md bg-gradient-to-r from-[#9B5CF5] to-[#00E0FF] text-white font-medium hover:scale-105 transition">
+        <button onClick={() => navigate('/ai/workspace')} className="px-4 py-2 rounded-md bg-gradient-to-r from-[#9B5CF5] to-[#00E0FF] text-white font-medium hover:scale-105 transition">
           Create
         </button>
       </div>
@@ -744,7 +676,7 @@ export default function Box() {
 
           {/* Buttons */}
           <div className="flex gap-2 flex-wrap">
-            <button className="px-4 py-1.5 rounded-md bg-gradient-to-r from-[#9B5CF5] to-[#00E0FF] text-white text-sm hover:scale-105 transition">
+            <button onClick={() => navigate('/ai/projects')} className="px-4 py-1.5 rounded-md bg-gradient-to-r from-[#9B5CF5] to-[#00E0FF] text-white text-sm hover:scale-105 transition">
               Open
             </button>
             <button className="px-4 py-1.5 rounded-md bg-[#181818] border border-white/10 text-muted-foreground text-sm hover:bg-[#1E1E1E] transition">
@@ -789,7 +721,7 @@ export default function Box() {
         Join collaborative circles, hackathons, and creative coding tribes.
       </p>
     </div>
-    <button className="px-4 py-2 rounded-md bg-gradient-to-r from-[#9B5CF5] to-[#00E0FF] text-white font-medium hover:scale-105 transition">
+    <button onClick={() => navigate('/ai/community')} className="px-4 py-2 rounded-md bg-gradient-to-r from-[#9B5CF5] to-[#00E0FF] text-white font-medium hover:scale-105 transition">
       View All
     </button>
   </div>
@@ -907,10 +839,10 @@ export default function Box() {
 
           {/* Buttons */}
           <div className="flex gap-2">
-            <button className="px-4 py-2 rounded-md bg-gradient-to-r from-[#9B5CF5] to-[#00E0FF] text-white text-sm hover:scale-105 transition">
+            <button onClick={() => navigate('/ai/community')} className="px-4 py-2 rounded-md bg-gradient-to-r from-[#9B5CF5] to-[#00E0FF] text-white text-sm hover:scale-105 transition">
               Join
             </button>
-            <button className="px-4 py-2 rounded-md bg-[#181818] border border-white/10 text-muted-foreground text-sm hover:bg-[#1E1E1E] transition">
+            <button onClick={() => navigate('/ai/community')} className="px-4 py-2 rounded-md bg-[#181818] border border-white/10 text-muted-foreground text-sm hover:bg-[#1E1E1E] transition">
               View Feed
             </button>
           </div>
@@ -993,16 +925,17 @@ export default function Box() {
             <h2 className="text-3xl font-bold mb-2">Ready to Craft Brilliance?</h2>
             <p className="text-muted-foreground mb-6">Enter your workspace and let AI amplify your best ideas.</p>
             <div className="flex items-center justify-center gap-4">
-              <button onClick={() => handleCTA("/workspace")} className="px-6 py-3 rounded-xl bg-gradient-to-r from-[#9B5CF5] to-[#00E0FF] text-white">Enter Workspace</button>
-              <button onClick={() => handleCTA("/signup")} className="px-6 py-3 rounded-xl border border-border text-muted-foreground">Create Account</button>
+              <button onClick={() => handleCTA("/ai/workspace")} className="px-6 py-3 rounded-xl bg-gradient-to-r from-[#9B5CF5] to-[#00E0FF] text-white">Enter Workspace</button>
+              <button onClick={() => handleCTA("/pricing")} className="px-6 py-3 rounded-xl border border-border text-muted-foreground">View Plans</button>
             </div>
           </motion.div>
         </section>
 
-        {/* footer small */}
-        <footer className="mx-6 sm:mx-10 lg:mx-20 py-10 text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} VibeXCraft • Built with ❤️ • Demo UI
-        </footer>
+        {/* Pricing Section */}
+        <PricingSection />
+
+        {/* Footer */}
+        <Footer />
       </main>
     </div>
   );

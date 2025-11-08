@@ -2,6 +2,7 @@ import { useState } from "react";
 import { GlassCard } from "@/components/GlassCard";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Footer from "@/components/Footer";
 import {
   Users,
   FolderGit2,
@@ -276,6 +277,7 @@ export default function Profile() {
           </GlassCard>
         </TabsContent>
       </Tabs>
+      <Footer />
     </motion.div>
   );
 }

@@ -1,8 +1,12 @@
 import { GlassCard } from "@/components/GlassCard";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
+import Footer from "@/components/Footer";
+import { useNavigate } from "react-router-dom";
 
 export default function Pricing() {
+  const navigate = useNavigate();
+  
   const plans = [
     {
       name: "Free",
@@ -94,6 +98,13 @@ export default function Pricing() {
             </div>
 
             <Button 
+              onClick={() => {
+                if (plan.price === "Contact") {
+                  window.location.href = "mailto:sales@vibexcraft.com?subject=Enterprise Plan Inquiry";
+                } else {
+                  navigate("/ai/dashboard");
+                }
+              }}
               className={`w-full ${
                 plan.popular 
                   ? 'bg-gradient-primary hover:shadow-glow-purple' 
@@ -147,6 +158,7 @@ export default function Pricing() {
           </table>
         </div>
       </GlassCard>
+      <Footer />
     </div>
   );
 }

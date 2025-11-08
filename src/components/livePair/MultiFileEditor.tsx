@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useToast } from '@/hooks/use-toast';
 import { FileExplorer } from './FileExplorer';
 import { FileTabs } from './FileTabs';
+import GitHubIntegration from './GitHubIntegration';
 
 interface FileItem {
   id: string;
@@ -235,6 +236,7 @@ const MultiFileEditor = ({ sessionCode }: MultiFileEditorProps) => {
             <span className="text-sm text-muted-foreground">Multi-File Editor</span>
           </div>
           <div className="flex items-center gap-2">
+            <GitHubIntegration sessionCode={sessionCode} files={files} />
             <Select value={language} onValueChange={handleLanguageChange} disabled={!activeFileId}>
               <SelectTrigger className="w-[150px] h-8">
                 <SelectValue />

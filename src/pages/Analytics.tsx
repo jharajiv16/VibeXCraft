@@ -1,8 +1,25 @@
 import { GlassCard } from "@/components/GlassCard";
 import { Button } from "@/components/ui/button";
 import { TrendingUp, Clock, Zap, Target, Download } from "lucide-react";
+import Footer from "@/components/Footer";
+import { useUser } from "@clerk/clerk-react";
 
 export default function Analytics() {
+  const { user } = useUser();
+
+  const stats = {
+    codingHours: (user?.publicMetadata?.codingHours as string) || "0h",
+    aiUsage: (user?.publicMetadata?.aiUsage as number) ?? 0,
+    tasksCompleted: (user?.publicMetadata?.tasksCompleted as number) ?? 0,
+    vibeScore: (user?.publicMetadata?.vibeScore as number) ?? 0,
+    weekly: (user?.publicMetadata?.weekly as number[]) || [0,0,0,0,0,0,0],
+    interactions: (user?.publicMetadata?.interactions as { type: string; count: number; color: string }[]) || [
+      { type: "Code Reviews", count: 0, color: "bg-primary" },
+      { type: "Optimizations", count: 0, color: "bg-accent" },
+      { type: "Bug Fixes", count: 0, color: "bg-primary" },
+      { type: "Explanations", count: 0, color: "bg-accent" },
+    ],
+  };
   return (
     <div className="min-h-screen p-8 space-y-6">
       <div className="flex items-center justify-between">
@@ -20,10 +37,10 @@ export default function Analytics() {
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         {[
-          { icon: Clock, label: "Coding Hours", value: "124.5h", change: "+12%" },
-          { icon: Zap, label: "AI Usage", value: "89", change: "+23%" },
-          { icon: Target, label: "Tasks Completed", value: "47", change: "+8%" },
-          { icon: TrendingUp, label: "Vibe Score", value: "87", change: "+5%" },
+          { icon: Clock, label: "Coding Hours", value: stats.codingHours, change: "+0%" },
+          { icon: Zap, label: "AI Usage", value: String(stats.aiUsage), change: "+0%" },
+          { icon: Target, label: "Tasks Completed", value: String(stats.tasksCompleted), change: "+0%" },
+          { icon: TrendingUp, label: "Vibe Score", value: String(stats.vibeScore), change: "+0%" },
         ].map((stat, i) => (
           <GlassCard key={i} hover className="p-6">
             <div className="flex items-center gap-3 mb-4">
@@ -47,7 +64,7 @@ export default function Analytics() {
             Coding Activity
           </h2>
           <div className="h-64 flex items-end justify-between gap-2">
-            {[40, 65, 45, 80, 55, 70, 90].map((height, i) => (
+            {stats.weekly.map((height, i) => (
               <div key={i} className="flex-1 flex flex-col items-center gap-2">
                 <div 
                   className="w-full bg-gradient-primary rounded-t-lg transition-all hover:shadow-glow-purple"
@@ -67,12 +84,7 @@ export default function Analytics() {
             AI Interactions
           </h2>
           <div className="space-y-4">
-            {[
-              { type: "Code Reviews", count: 34, color: "bg-primary" },
-              { type: "Optimizations", count: 28, color: "bg-accent" },
-              { type: "Bug Fixes", count: 21, color: "bg-primary" },
-              { type: "Explanations", count: 45, color: "bg-accent" },
-            ].map((item, i) => (
+            {stats.interactions.map((item, i) => (
               <div key={i} className="space-y-2">
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-muted-foreground">{item.type}</span>
@@ -106,6 +118,7 @@ export default function Analytics() {
           ))}
         </div>
       </GlassCard>
+      <Footer />
     </div>
   );
 }

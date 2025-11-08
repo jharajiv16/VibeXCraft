@@ -3,29 +3,35 @@ import { motion } from "framer-motion";
 import { GlassCard } from "@/components/GlassCard";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Footer from "@/components/Footer";
+import { useNavigate } from "react-router-dom";
 import {
   Heart,
-  MessageCircle,
   Share2,
   Users,
-  Send,
-  Trophy,
   PlusCircle,
 } from "lucide-react";
 
 export default function Community() {
-  const [chatInput, setChatInput] = useState("");
-  const [messages, setMessages] = useState([
-    { sender: "Alex", text: "Hey devs! Excited for the new AI challenge? 🤖" },
-    { sender: "You", text: "Absolutely! The theme looks insane 🔥" },
-  ]);
+  const navigate = useNavigate();
+  const [showCreatePost, setShowCreatePost] = useState(false);
+  const [newPost, setNewPost] = useState({
+    user: "You",
+    project: "",
+    lang: "",
+    desc: "",
+    likes: 0,
+    comments: 0,
+    image: "🆕",
+    tag: "General",
+  });
 
   // ✅ FIX: Add missing visiblePosts and visibleCommunities states
   const [visiblePosts, setVisiblePosts] = useState(4);
   const [visibleCommunities, setVisibleCommunities] = useState(6);
 
   // 🧠 FEED POSTS
-  const posts = [
+  const initialPosts = [
     {
       user: "Sarah Dev",
       project: "Real-time Chat App",
@@ -108,6 +114,11 @@ export default function Community() {
     },
   ];
 
+  const [posts, setPosts] = useState(initialPosts);
+  const [likesMap, setLikesMap] = useState<Record<number, number>>(
+    Object.fromEntries(initialPosts.map((p, i) => [i, p.likes]))
+  );
+
   // 🌍 COMMUNITY CARDS
   const allCommunities = [
     { name: "AI Builders Hub", members: "4.2k", desc: "Collaborate on AI-powered projects & research." },
@@ -121,12 +132,32 @@ export default function Community() {
     { name: "Game Dev Galaxy", members: "2.5k", desc: "3D, Unreal, and Unity creators sharing their worlds." },
   ];
 
-  // 💬 Handle Chat
-  const handleSend = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!chatInput.trim()) return;
-    setMessages([...messages, { sender: "You", text: chatInput }]);
-    setChatInput("");
+  const handleLike = (index: number) => {
+    setLikesMap((prev) => ({ ...prev, [index]: (prev[index] || 0) + 1 }));
+  };
+
+  const handleShare = async (post: (typeof posts)[number]) => {
+    const shareData = {
+      title: `${post.project} by ${post.user}`,
+      text: post.desc,
+      url: window.location.href,
+    };
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(`${shareData.title} - ${shareData.url}`);
+        // no toast system here; rely on UX change
+      }
+    } catch {}
+  };
+
+  const submitNewPost = () => {
+    if (!newPost.project.trim() || !newPost.desc.trim()) return;
+    setPosts((prev) => [newPost, ...prev]);
+    setLikesMap((prev) => ({ 0: newPost.likes, ...Object.fromEntries(Object.entries(prev).map(([k,v]) => [Number(k)+1, v])) }));
+    setShowCreatePost(false);
+    setNewPost({ user: "You", project: "", lang: "", desc: "", likes: 0, comments: 0, image: "🆕", tag: "General" });
   };
 
   return (
@@ -147,19 +178,50 @@ export default function Community() {
           </p>
         </div>
 
-        <Button className="flex items-center gap-2 bg-gradient-to-r from-[#9B5CF5] to-[#00E0FF] hover:opacity-90 transition">
+        <Button 
+          onClick={() => setShowCreatePost(true)}
+          className="flex items-center gap-2 bg-gradient-to-r from-[#9B5CF5] to-[#00E0FF] hover:opacity-90 transition"
+        >
           <PlusCircle className="w-5 h-5" />
           Create Post
         </Button>
       </div>
 
       {/* TABS */}
+      {showCreatePost && (
+        <GlassCard className="p-6 space-y-4">
+          <h2 className="text-xl font-semibold">Create Post</h2>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <input
+              value={newPost.project}
+              onChange={(e) => setNewPost({ ...newPost, project: e.target.value })}
+              placeholder="Project title"
+              className="bg-background/50 border border-border rounded-xl px-4 py-2 text-sm outline-none focus:ring-2 ring-primary"
+            />
+            <input
+              value={newPost.lang}
+              onChange={(e) => setNewPost({ ...newPost, lang: e.target.value })}
+              placeholder="Tech / Language"
+              className="bg-background/50 border border-border rounded-xl px-4 py-2 text-sm outline-none focus:ring-2 ring-primary"
+            />
+          </div>
+          <textarea
+            value={newPost.desc}
+            onChange={(e) => setNewPost({ ...newPost, desc: e.target.value })}
+            placeholder="Describe your build..."
+            className="w-full min-h-24 bg-background/50 border border-border rounded-xl px-4 py-2 text-sm outline-none focus:ring-2 ring-primary"
+          />
+          <div className="flex gap-2 justify-end">
+            <Button variant="secondary" onClick={() => setShowCreatePost(false)}>Cancel</Button>
+            <Button className="bg-gradient-to-r from-[#9B5CF5] to-[#00E0FF]" onClick={submitNewPost}>Post</Button>
+          </div>
+        </GlassCard>
+      )}
+
       <Tabs defaultValue="feed" className="w-full">
         <TabsList className="bg-card/50 border border-border backdrop-blur-lg rounded-xl">
           <TabsTrigger value="feed">Feed</TabsTrigger>
           <TabsTrigger value="communities">Communities</TabsTrigger>
-          <TabsTrigger value="hackathons">Hackathons</TabsTrigger>
-          <TabsTrigger value="chat">Live Chat</TabsTrigger>
         </TabsList>
 
         {/* 📰 FEED */}
@@ -208,17 +270,15 @@ export default function Community() {
                     {/* ⚙️ Action Buttons */}
                     <div className="flex items-center justify-between mt-4 border-t border-border pt-4">
                       <div className="flex items-center gap-5">
-                        <button className="flex items-center gap-2 text-muted-foreground hover:text-primary transition">
-                          <Heart className="w-5 h-5" /> {post.likes}
+                        <button onClick={() => handleLike(i)} className="flex items-center gap-2 text-muted-foreground hover:text-primary transition">
+                          <Heart className="w-5 h-5" /> {likesMap[i] ?? post.likes}
                         </button>
-                        <button className="flex items-center gap-2 text-muted-foreground hover:text-accent transition">
-                          <MessageCircle className="w-5 h-5" /> {post.comments}
-                        </button>
-                        <button className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition">
+                        <button onClick={() => handleShare(post)} className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition">
                           <Share2 className="w-5 h-5" /> Share
                         </button>
                       </div>
                       <Button
+                        onClick={() => navigate("/ai/workspace")}
                         size="sm"
                         className="bg-gradient-to-r from-[#9B5CF5] to-[#00E0FF] hover:opacity-85 transition"
                       >
@@ -247,7 +307,7 @@ export default function Community() {
         </TabsContent>
 
         {/* 🌍 COMMUNITIES */}
-<TabsContent value="communities" className="space-y-6 mt-6">
+        <TabsContent value="communities" className="space-y-6 mt-6">
   <GlassCard hover className="p-6">
     {/* Header */}
     <div className="flex items-center justify-between mb-6">
@@ -327,80 +387,9 @@ export default function Community() {
       </div>
     )}
   </GlassCard>
-</TabsContent>
-
-        {/* 🏆 HACKATHONS */}
-        <TabsContent value="hackathons" className="space-y-6 mt-6">
-          <GlassCard hover className="p-6">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-2xl font-semibold flex items-center gap-2">
-                <Trophy className="w-5 h-5 text-yellow-400" /> Upcoming Hackathons
-              </h2>
-              <Button size="sm" variant="secondary">Submit Idea</Button>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              {[
-                { name: "AI Innovation Sprint", date: "Nov 20 - Dec 1, 2025", prize: "$5000 + Internship" },
-                { name: "Web3 Future Hack", date: "Dec 10 - Dec 20, 2025", prize: "$10,000 + Cloud Credits" },
-              ].map((hack, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  className="p-5 rounded-2xl border border-border bg-background/50 hover:bg-background/70 transition"
-                >
-                  <h3 className="font-semibold mb-1">{hack.name}</h3>
-                  <p className="text-sm text-muted-foreground mb-2">{hack.date}</p>
-                  <p className="text-sm text-accent font-medium">🏆 {hack.prize}</p>
-                  <Button size="sm" className="mt-3 w-full bg-gradient-to-r from-[#9B5CF5] to-[#00E0FF]">
-                    Join Hackathon
-                  </Button>
-                </motion.div>
-              ))}
-            </div>
-          </GlassCard>
-        </TabsContent>
-
-        {/* 💬 LIVE CHAT */}
-        <TabsContent value="chat" className="mt-6">
-          <GlassCard className="p-6 h-[70vh] flex flex-col">
-            <h2 className="text-xl font-semibold mb-3 flex items-center gap-2">
-              <MessageCircle className="w-5 h-5 text-accent" /> Global Chatroom
-            </h2>
-
-            <div className="flex-1 overflow-y-auto space-y-3 mb-4">
-              {messages.map((msg, i) => (
-                <div
-                  key={i}
-                  className={`p-3 rounded-xl max-w-[70%] ${
-                    msg.sender === "You"
-                      ? "ml-auto bg-gradient-to-r from-[#9B5CF5] to-[#00E0FF] text-white"
-                      : "bg-background/60 border border-border text-foreground"
-                  }`}
-                >
-                  <p className="text-xs font-medium mb-1">{msg.sender}</p>
-                  <p className="text-sm">{msg.text}</p>
-                </div>
-              ))}
-            </div>
-
-            <form onSubmit={handleSend} className="flex gap-3">
-              <input
-                type="text"
-                value={chatInput}
-                onChange={(e) => setChatInput(e.target.value)}
-                placeholder="Say something..."
-                className="flex-1 bg-background/50 border border-border rounded-xl px-4 py-2 text-sm outline-none focus:ring-2 ring-primary"
-              />
-              <Button type="submit" className="bg-gradient-to-r from-[#9B5CF5] to-[#00E0FF]">
-                <Send className="w-4 h-4" />
-              </Button>
-            </form>
-          </GlassCard>
         </TabsContent>
       </Tabs>
+      <Footer />
     </motion.div>
   );
 }

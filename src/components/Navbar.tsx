@@ -18,6 +18,7 @@ import {
   PlusCircle,
   Globe,
   Layers,
+  Calendar,
 } from "lucide-react";
 import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
 import { assets } from "../assets/assets";
@@ -37,13 +38,11 @@ const Navbar: React.FC = () => {
     { name: "Dashboard", icon: LayoutDashboard, path: "/ai/dashboard" },
     { name: "Projects", icon: Folder, path: "/ai/projects" },
     { name: "AI Copilot", icon: Bot, path: "/ai/copilot" },
+    { name: "AI Bot", icon: Bot, path: "/ai/copilot" },
+    { name: "AI Agent", icon: Bot, path: "/ai/agent" },
     { name: "Community", icon: Users, path: "/ai/community" },
-    { name: "Hackathons", icon: Trophy, path: "/ai/workspace?tab=hackathon" },
     { name: "Workspace", icon: Code, path: "/ai/workspace" },
-    { name: "Chat", icon: MessageCircle, path: "/ai/workspace?tab=chat" },
-    { name: "Video Call", icon: Video, path: "/ai/workspace?tab=video" },
-    { name: "Coding Room", icon: PlusCircle, path: "/ai/workspace?tab=editor" },
-    { name: "Open Source", icon: Globe, path: "/ai/workspace?tab=opensource" },
+    { name: "Events", icon: Calendar, path: "/ai/events" },
     { name: "Analytics", icon: BarChart3, path: "/ai/analytics" },
     { name: "Profile", icon: Users, path: "/ai/profile" },
     { name: "GitHub Sync", icon: Github, path: "/ai/settings" },
@@ -69,12 +68,17 @@ const Navbar: React.FC = () => {
       <div className="flex justify-between items-center px-6 sm:px-16 lg:px-24 py-3">
         {/* 🌐 Logo */}
         <NavLink to="/" className="flex items-center gap-2 group">
-          <motion.img
-            src={assets.logo}
-            alt="VibeXCraft Logo"
-            className="h-8 w-auto drop-shadow-[0_0_12px_rgba(0,224,255,0.4)] group-hover:scale-105 transition-transform duration-300"
+          <motion.div
+            className="flex items-center gap-2"
             whileHover={{ scale: 1.05 }}
-          />
+          >
+            <div className="p-2 rounded-lg bg-gradient-to-br from-[#9B5CF5] to-[#00E0FF] shadow-[0_0_12px_rgba(0,224,255,0.4)]">
+              <Code className="w-5 h-5 text-white" />
+            </div>
+            <span className="text-xl font-bold bg-gradient-to-r from-[#9B5CF5] via-[#00E0FF] to-[#9B5CF5] bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(0,224,255,0.4)]">
+              VibeXCraft
+            </span>
+          </motion.div>
         </NavLink>
 
         {/* 🔐 If user is logged in */}

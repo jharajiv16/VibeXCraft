@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { useAuth } from "@clerk/clerk-react";
+
 // In App.tsx
 import {  Outlet } from "react-router-dom";
 
@@ -21,7 +22,9 @@ import Pricing from "./pages/Pricing";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
+import Agent from "./pages/Agent";
 import Query from "./pages/Query";
+import Events from "./pages/Events";
 import LivePair from "./pages/LivePair";
 
 const queryClient = new QueryClient();
@@ -57,12 +60,15 @@ function App() {
               <Route path="workspace" element={<Workspace />} />
               <Route path="projects" element={<Projects />} />
               <Route path="copilots" element={<Copilots />} />
+              <Route path="copilot" element={<Copilots />} />
               <Route path="community" element={<Community />} />
               <Route path="analytics" element={<Analytics />} />
+              <Route path="agent" element={<Agent />} />
               <Route path="profile" element={<Profile />} />
               <Route path="settings" element={<Settings />} />
               <Route path="query" element={<Query />} />
               <Route path="live-pair" element={<LivePair />} />
+              <Route path="events" element={<Events />} />
             </Route>
             
             {/* 404 Route */}

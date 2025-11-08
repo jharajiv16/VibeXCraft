@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+import logo from "./logo1.png";
 import gradientBackground from "./gradientBackground.png";
 import user_group from "./user_group.png";
 import star_icon from "./star_icon.svg";
@@ -39,14 +39,7 @@ export const AiToolsData = [
     bg: { from: "#00E0FF", to: "#00BFFF" },
     Icon: Boxes,
   },
-  {
-    title: "AI Copilot Hub",
-    description:
-      "Meet your intelligent copilots — from code assistants to task planners, all tuned to your workflow.",
-    path: "/ai/copilots",
-    bg: { from: "#9B5CF5", to: "#7C3AED" },
-    Icon: Bot,
-  },
+ 
   {
     title: "Community",
     description:
@@ -63,14 +56,7 @@ export const AiToolsData = [
     bg: { from: "#8B5CF6", to: "#4ADE80" },
     Icon: BarChart3,
   },
-  {
-    title: "AI Studio",
-    description:
-      "Create and fine-tune custom AI copilots and agents — your personalized assistants built with VibeXCraft.",
-    path: "/ai/studio",
-    bg: { from: "#F472B6", to: "#C084FC" },
-    Icon: Brain,
-  },
+ 
   {
     title: "Code Arena",
     description:

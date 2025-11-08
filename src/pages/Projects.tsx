@@ -2,8 +2,12 @@ import { GlassCard } from "@/components/GlassCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, Star, GitFork, Eye, Plus } from "lucide-react";
+import Footer from "@/components/Footer";
+import { useNavigate } from "react-router-dom";
 
 export default function Projects() {
+  const navigate = useNavigate();
+  
   const projects = [
     { name: "VibeXCraft-Core", lang: "TypeScript", stars: 42, forks: 12, views: 234 },
     { name: "AI-Copilot-Engine", lang: "Python", stars: 89, forks: 23, views: 567 },
@@ -22,7 +26,10 @@ export default function Projects() {
           </h1>
           <p className="text-muted-foreground mt-1">Synced with the Cloud</p>
         </div>
-        <Button className="bg-gradient-primary hover:shadow-glow-purple transition-all">
+        <Button 
+          onClick={() => navigate("/ai/workspace")}
+          className="bg-gradient-primary hover:shadow-glow-purple transition-all"
+        >
           <Plus className="w-4 h-4 mr-2" />
           New Project
         </Button>
@@ -68,7 +75,11 @@ export default function Projects() {
             </div>
 
             <div className="flex gap-2">
-              <Button size="sm" className="flex-1 bg-primary/10 hover:bg-primary/20">
+              <Button 
+                onClick={() => navigate("/ai/workspace")}
+                size="sm" 
+                className="flex-1 bg-primary/10 hover:bg-primary/20"
+              >
                 Open in IDE
               </Button>
               <Button size="sm" variant="secondary">
@@ -78,6 +89,7 @@ export default function Projects() {
           </GlassCard>
         ))}
       </div>
+      <Footer />
     </div>
   );
 }

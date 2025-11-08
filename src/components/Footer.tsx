@@ -1,12 +1,19 @@
 import React from "react";
-import { assets } from "../assets/assets";
+import { Code } from "lucide-react";
 
 const Footer: React.FC = () => {
   return (
     <footer className="px-6 sm:px-20 xl:px-32 py-12 mt-20 border-t border-border text-muted-foreground">
       <div className="flex flex-col md:flex-row justify-between gap-10 border-b border-border pb-8">
         <div className="md:max-w-md">
-          <img src={assets.logo} alt="VibeXCraft Logo" className="h-8" />
+          <div className="flex items-center gap-2 mb-4">
+            <div className="p-2 rounded-lg bg-gradient-to-br from-[#9B5CF5] to-[#00E0FF] shadow-[0_0_12px_rgba(0,224,255,0.4)]">
+              <Code className="w-5 h-5 text-white" />
+            </div>
+            <span className="text-2xl font-bold bg-gradient-to-r from-[#9B5CF5] via-[#00E0FF] to-[#9B5CF5] bg-clip-text text-transparent">
+              VibeXCraft
+            </span>
+          </div>
           <p className="mt-4 text-sm">
             Experience the next generation of AI creation tools with VibeXCraft.
             Create smarter, faster, and better.

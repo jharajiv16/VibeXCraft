@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Footer from "@/components/Footer";
 import {
   User,
   Bell,
@@ -260,6 +261,7 @@ export default function Settings() {
           Logout
         </Button>
       </GlassCard>
+      <Footer />
     </motion.div>
   );
 }
