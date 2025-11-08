@@ -1,0 +1,44 @@
+# Render deployment configuration for VibeXCraft
+
+services:
+  # Frontend (React/Vite)
+  - type: web
+    name: vibexcraft-frontend
+    env: vite
+    buildCommand: npm install && npm run build
+    startCommand: npm run preview
+    envVars:
+      - key: VITE_API_URL
+        sync: false
+      - key: VITE_CLERK_PUBLISHABLE_KEY
+        sync: false
+      - key: VITE_SUPABASE_URL
+        sync: false
+      - key: VITE_SUPABASE_PUBLISHABLE_KEY
+        sync: false
+      - key: VITE_GITHUB_CLIENT_ID
+        sync: false
+
+  # Backend (Express.js API)
+  - type: web
+    name: vibexcraft-backend
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: cd server && npm install
+    startCommand: cd server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-3.5-turbo
+      - key: CORS_ORIGIN
+        fromService:
+          type: web
+          name: vibexcraft-frontend
+          property: host
+
