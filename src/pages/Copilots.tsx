@@ -49,21 +49,34 @@ export default function Copilots() {
       }
     } catch (error) {
       const errorMsg = error instanceof Error ? error.message : "Failed to call copilot";
-      // Better error message for OpenAI API issues
-      let errorResponse = `❌ Error: ${errorMsg}\n\n`;
       
-      if (errorMsg.includes('API key') || errorMsg.includes('OPENAI_API_KEY')) {
-        errorResponse += `Make sure your OpenAI API key is set in server/.env file:\nOPENAI_API_KEY=your_api_key_here\n\n`;
+      // Remove any Gemini references from error messages
+      let cleanedErrorMsg = errorMsg
+        .replace(/Gemini/gi, 'OpenAI')
+        .replace(/GEMINI/gi, 'OPENAI')
+        .replace(/gemini/gi, 'openai')
+        .replace(/makersuite\.google\.com/gi, 'platform.openai.com')
+        .replace(/GEMINI_API_KEY/gi, 'OPENAI_API_KEY');
+      
+      // Better error message for OpenAI API issues
+      let errorResponse = `❌ Error: ${cleanedErrorMsg}\n\n`;
+      
+      if (cleanedErrorMsg.includes('API key') || cleanedErrorMsg.includes('OPENAI_API_KEY') || cleanedErrorMsg.includes('not set') || cleanedErrorMsg.includes('invalid')) {
+        errorResponse += `⚠️ OpenAI API Key Issue\n\n`;
+        errorResponse += `Make sure your OpenAI API key is set in server/.env file:\n`;
+        errorResponse += `OPENAI_API_KEY=your_api_key_here\n\n`;
         errorResponse += `Get your API key from: https://platform.openai.com/api-keys\n\n`;
+        errorResponse += `After adding the key, restart the server:\ncd server\nnpm start\n\n`;
       }
       
-      errorResponse += `Make sure the backend server is running on port 3001.\n\nTo start the server, run:\ncd server\nnpm start`;
+      errorResponse += `💡 Make sure the backend server is running on port 3001.\n\n`;
+      errorResponse += `To start the server, run:\ncd server\nnpm start`;
       
       setResponse(errorResponse);
       setConversation([...newConversation, { role: 'assistant' as const, content: errorResponse }]);
       toast({
         title: "Error",
-        description: errorMsg,
+        description: cleanedErrorMsg.length > 100 ? cleanedErrorMsg.substring(0, 100) + '...' : cleanedErrorMsg,
         variant: "destructive",
       });
     } finally {

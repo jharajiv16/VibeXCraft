@@ -11,8 +11,8 @@
    ```bash
    # Create a .env file in the server directory
    # The API key is already hardcoded as fallback, but you can override it:
-   GEMINI_API_KEY=your_gemini_api_key_here
-   GEMINI_MODEL=gemini-pro
+   OPENAI_API_KEY=your_openai_api_key_here
+   OPENAI_MODEL=gpt-3.5-turbo
    PORT=3001
    ```
 
@@ -27,23 +27,23 @@
 
 All endpoints are prefixed with `/api/copilots/`
 
-- `POST /api/copilots/code` - Code Copilot (uses Gemini API)
-- `POST /api/copilots/meeting` - Meeting Copilot (uses Gemini API)
-- `POST /api/copilots/tutor` - Tutor Copilot (uses Gemini API)
-- `POST /api/copilots/design` - Design Copilot (uses Gemini API)
-- `POST /api/copilots/workflow` - Workflow Copilot (uses Gemini API)
-- `POST /api/agent/gemini` - Gemini Agent endpoint
+- `POST /api/copilots/code` - Code Copilot (uses OpenAI GPT API)
+- `POST /api/copilots/meeting` - Meeting Copilot (uses OpenAI GPT API)
+- `POST /api/copilots/tutor` - Tutor Copilot (uses OpenAI GPT API)
+- `POST /api/copilots/design` - Design Copilot (uses OpenAI GPT API)
+- `POST /api/copilots/workflow` - Workflow Copilot (uses OpenAI GPT API)
+- `POST /api/agent/gemini` - Agent endpoint (uses OpenAI GPT API)
 - `GET /health` - Health check
 
 ## Environment Variables
 
-- `GEMINI_API_KEY` - Your Google Gemini API key (optional, defaults to hardcoded key)
-- `GEMINI_MODEL` - Gemini model to use (default: gemini-pro)
+- `OPENAI_API_KEY` - Your OpenAI API key (required)
+- `OPENAI_MODEL` - OpenAI model to use (default: gpt-3.5-turbo)
 - `PORT` - Server port (default: 3001)
 
-## Using Gemini API
+## Using OpenAI GPT API
 
-All copilots now use Google's Gemini API instead of OpenAI. The API key is configured by default, but you can override it using environment variables.
+All copilots now use OpenAI GPT API. You need to set your OpenAI API key in the `.env` file. Get your API key from https://platform.openai.com/api-keys
 
 ### Example Request
 

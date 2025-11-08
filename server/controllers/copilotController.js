@@ -211,5 +211,30 @@ Provide actionable advice, suggest task breakdowns, identify bottlenecks, and he
   }
 };
 
+// Agent Copilot (same as code copilot for now)
+export const geminiAgent = async (req, res, next) => {
+  try {
+    const { message, context } = req.body;
+
+    const systemPrompt = `You are an intelligent AI agent assistant. Help users with their questions, provide information, and assist with various tasks.
+Be helpful, accurate, and concise in your responses.`;
+
+    const messages = [
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: message }
+    ];
+
+    const response = await callOpenAI(messages, process.env.OPENAI_MODEL || 'gpt-3.5-turbo');
+
+    res.json({
+      success: true,
+      response: response,
+      copilot: 'AI Agent',
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export { getApiKeyStatus };
 

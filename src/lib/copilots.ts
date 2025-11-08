@@ -41,11 +41,21 @@ export async function callCodeCopilot(
     return data;
   } catch (error) {
     console.error('Code Copilot Error:', error);
+    let errorMsg = error instanceof Error ? error.message : 'Failed to call Code Copilot. Make sure the server is running on port 3001.';
+    
+    // Clean up any Gemini references
+    errorMsg = errorMsg
+      .replace(/Gemini/gi, 'OpenAI')
+      .replace(/GEMINI/gi, 'OPENAI')
+      .replace(/gemini/gi, 'openai')
+      .replace(/makersuite\.google\.com/gi, 'platform.openai.com')
+      .replace(/GEMINI_API_KEY/gi, 'OPENAI_API_KEY');
+    
     return {
       success: false,
       response: '',
       copilot: 'Code Copilot',
-      error: error instanceof Error ? error.message : 'Failed to call Code Copilot. Make sure the server is running on port 3001.',
+      error: errorMsg,
     };
   }
 }
@@ -74,11 +84,13 @@ export async function callMeetingCopilot(
     return data;
   } catch (error) {
     console.error('Meeting Copilot Error:', error);
+    let errorMsg = error instanceof Error ? error.message : 'Failed to call Meeting Copilot. Make sure the server is running on port 3001.';
+    errorMsg = errorMsg.replace(/Gemini/gi, 'OpenAI').replace(/GEMINI/gi, 'OPENAI').replace(/gemini/gi, 'openai').replace(/makersuite\.google\.com/gi, 'platform.openai.com').replace(/GEMINI_API_KEY/gi, 'OPENAI_API_KEY');
     return {
       success: false,
       response: '',
       copilot: 'Meeting Copilot',
-      error: error instanceof Error ? error.message : 'Failed to call Meeting Copilot. Make sure the server is running on port 3001.',
+      error: errorMsg,
     };
   }
 }
@@ -108,11 +120,13 @@ export async function callTutorCopilot(
     return data;
   } catch (error) {
     console.error('Tutor Copilot Error:', error);
+    let errorMsg = error instanceof Error ? error.message : 'Failed to call Tutor Copilot. Make sure the server is running on port 3001.';
+    errorMsg = errorMsg.replace(/Gemini/gi, 'OpenAI').replace(/GEMINI/gi, 'OPENAI').replace(/gemini/gi, 'openai').replace(/makersuite\.google\.com/gi, 'platform.openai.com').replace(/GEMINI_API_KEY/gi, 'OPENAI_API_KEY');
     return {
       success: false,
       response: '',
       copilot: 'Tutor Copilot',
-      error: error instanceof Error ? error.message : 'Failed to call Tutor Copilot. Make sure the server is running on port 3001.',
+      error: errorMsg,
     };
   }
 }
@@ -142,11 +156,13 @@ export async function callDesignCopilot(
     return data;
   } catch (error) {
     console.error('Design Copilot Error:', error);
+    let errorMsg = error instanceof Error ? error.message : 'Failed to call Design Copilot. Make sure the server is running on port 3001.';
+    errorMsg = errorMsg.replace(/Gemini/gi, 'OpenAI').replace(/GEMINI/gi, 'OPENAI').replace(/gemini/gi, 'openai').replace(/makersuite\.google\.com/gi, 'platform.openai.com').replace(/GEMINI_API_KEY/gi, 'OPENAI_API_KEY');
     return {
       success: false,
       response: '',
       copilot: 'Design Copilot',
-      error: error instanceof Error ? error.message : 'Failed to call Design Copilot. Make sure the server is running on port 3001.',
+      error: errorMsg,
     };
   }
 }
@@ -176,11 +192,13 @@ export async function callWorkflowCopilot(
     return data;
   } catch (error) {
     console.error('Workflow Copilot Error:', error);
+    let errorMsg = error instanceof Error ? error.message : 'Failed to call Workflow Copilot. Make sure the server is running on port 3001.';
+    errorMsg = errorMsg.replace(/Gemini/gi, 'OpenAI').replace(/GEMINI/gi, 'OPENAI').replace(/gemini/gi, 'openai').replace(/makersuite\.google\.com/gi, 'platform.openai.com').replace(/GEMINI_API_KEY/gi, 'OPENAI_API_KEY');
     return {
       success: false,
       response: '',
       copilot: 'Workflow Copilot',
-      error: error instanceof Error ? error.message : 'Failed to call Workflow Copilot. Make sure the server is running on port 3001.',
+      error: errorMsg,
     };
   }
 }
@@ -209,11 +227,13 @@ export async function callCopilot(
     return data;
   } catch (error) {
     console.error(`${type} Copilot Error:`, error);
+    let errorMsg = error instanceof Error ? error.message : `Failed to call ${type} Copilot. Make sure the server is running on port 3001.`;
+    errorMsg = errorMsg.replace(/Gemini/gi, 'OpenAI').replace(/GEMINI/gi, 'OPENAI').replace(/gemini/gi, 'openai').replace(/makersuite\.google\.com/gi, 'platform.openai.com').replace(/GEMINI_API_KEY/gi, 'OPENAI_API_KEY');
     return {
       success: false,
       response: '',
       copilot: `${type.charAt(0).toUpperCase() + type.slice(1)} Copilot`,
-      error: error instanceof Error ? error.message : `Failed to call ${type} Copilot. Make sure the server is running on port 3001.`,
+      error: errorMsg,
     };
   }
 }
