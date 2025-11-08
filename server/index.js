@@ -27,23 +27,56 @@ const allowedOrigins = [
   process.env.NETLIFY_URL ? `https://${process.env.NETLIFY_URL}` : null,
 ].filter(Boolean);
 
+// Allow all Vercel domains (for flexibility)
+const isVercelDomain = (origin) => {
+  if (!origin) return false;
+  return origin.includes('.vercel.app') || origin.includes('vercel.app');
+};
+
+// Allow all Netlify domains
+const isNetlifyDomain = (origin) => {
+  if (!origin) return false;
+  return origin.includes('.netlify.app') || origin.includes('netlify.app');
+};
+
 app.use(cors({
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
+    
     // In development, allow all origins
     if (process.env.NODE_ENV === 'development') {
       return callback(null, true);
     }
-    // In production, check against allowed origins
-    if (allowedOrigins.some(allowed => origin === allowed || origin?.includes(allowed))) {
+    
+    // Allow Vercel domains
+    if (isVercelDomain(origin)) {
+      console.log(`✅ Allowing Vercel domain: ${origin}`);
+      return callback(null, true);
+    }
+    
+    // Allow Netlify domains
+    if (isNetlifyDomain(origin)) {
+      console.log(`✅ Allowing Netlify domain: ${origin}`);
+      return callback(null, true);
+    }
+    
+    // Check against allowed origins
+    if (allowedOrigins.some(allowed => {
+      if (!allowed) return false;
+      return origin === allowed || origin.includes(allowed) || allowed.includes(origin);
+    })) {
+      console.log(`✅ Allowing origin: ${origin}`);
       callback(null, true);
     } else {
-      console.warn(`CORS blocked origin: ${origin}`);
+      console.warn(`❌ CORS blocked origin: ${origin}`);
+      console.warn(`   Allowed origins: ${allowedOrigins.join(', ')}`);
       callback(new Error('Not allowed by CORS'));
     }
   },
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(express.json());
 app.use(requestLogger);
