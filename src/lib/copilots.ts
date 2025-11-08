@@ -2,7 +2,7 @@
 
 // Get API URL from environment variable
 // In production, this should be set in Vercel environment variables
-const API_BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? '' : 'http://localhost:3001');
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
 // Validate API URL in production
 if (import.meta.env.PROD && !API_BASE_URL) {
