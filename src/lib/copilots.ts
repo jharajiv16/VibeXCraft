@@ -50,7 +50,25 @@ export async function callCodeCopilot(
     return data;
   } catch (error) {
     console.error('Code Copilot Error:', error);
-    let errorMsg = error instanceof Error ? error.message : 'Failed to call Code Copilot. Make sure the server is running on port 3001.';
+    let errorMsg = error instanceof Error ? error.message : 'Failed to call Code Copilot.';
+    
+    // Check if it's a CORS or network error
+    if (errorMsg.includes('Failed to fetch') || errorMsg.includes('CORS') || errorMsg.includes('localhost')) {
+      if (import.meta.env.PROD) {
+        errorMsg = `❌ Configuration Error: VITE_API_URL is not set in Vercel!\n\n` +
+          `To fix this:\n` +
+          `1. Go to Vercel Dashboard → Your Project → Settings → Environment Variables\n` +
+          `2. Add: VITE_API_URL=https://your-backend-url.onrender.com\n` +
+          `3. Redeploy your frontend\n\n` +
+          `See: QUICK_FIX_VERCEL.md for detailed instructions.`;
+      } else {
+        errorMsg = `❌ Backend not running or CORS error!\n\n` +
+          `Make sure:\n` +
+          `1. Backend is running on http://localhost:3001\n` +
+          `2. CORS is configured correctly\n` +
+          `3. Check browser console for details`;
+      }
+    }
     
     // Clean up any Gemini references
     errorMsg = errorMsg
