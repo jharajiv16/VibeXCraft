@@ -2,16 +2,18 @@
 
 <div align="center">
 
-**The Ultimate AI-Powered Workspace for Coders & Creators**
+**🧠 The Ultimate AI-Powered Workspace for Coders & Creators**
+
+*Merging Google Workspace's modularity with Replit's developer energy*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
 
-*Merging Google Workspace's modularity with Replit's developer energy*
+**🌐 Live Demo:** [vibe-x-craft.vercel.app](https://vibe-x-craft.vercel.app)
 
-[Features](#-features) • [Installation](#-installation) • [Deployment](#-deployment) • [Documentation](#-documentation)
+[Features](#-features) • [Installation](#-installation) • [Deployment](#-deployment) • [Documentation](#-documentation) • [Contributing](#-contributing)
 
 </div>
 
@@ -19,102 +21,120 @@
 
 ## 📖 About
 
-VibeXCraft is a comprehensive AI-powered workspace platform that combines the best of development tools, AI copilots, and collaboration features. Built for developers, creators, and teams who want to code, create, and collaborate with cutting-edge AI assistance.
+VibeXCraft is an all-in-one AI-powered workspace designed for developers, creators, and teams. It blends real-time collaboration, smart coding assistance, and project management — powered by AI copilots.
 
-### Key Highlights
+### ⚡ Built by: The Binary Brains 🧠
 
-- 🤖 **5 AI Copilots**: Code, Meeting, Tutor, Design, and Workflow assistants
-- 💻 **Live Pair Programming**: Real-time collaborative coding sessions
-- 📁 **Project Management**: Import, fork, and manage GitHub projects
-- 👥 **Community Features**: Connect with developers, share projects, and collaborate
-- 📊 **Analytics Dashboard**: Track your coding metrics and productivity
-- 🎨 **Modern UI**: Beautiful, responsive design built with shadcn/ui and Tailwind CSS
+A passionate team of innovators crafting intelligent tools that empower creators, coders, and thinkers to build the future.
 
-## ✨ Features
+### ✨ Key Highlights
 
-### 🎯 Core Features
+- 🤖 **5 Specialized AI Copilots** — Code, Meeting, Tutor, Design & Workflow
+- 💻 **Live Pair Programming** — Real-time collaborative coding sessions
+- 📁 **Project Management** — Import, fork & manage GitHub projects easily
+- 👥 **Community Hub** — Discover, collaborate & showcase your projects
+- 📊 **Analytics Dashboard** — Track productivity, focus & coding patterns
+- 🎨 **Modern UI** — Built with shadcn/ui, Tailwind CSS, and Framer Motion
 
-- **AI Copilots**
-  - 🤖 **Code Copilot**: Write, debug, and refactor code with AI assistance
-  - 📹 **Meeting Copilot**: Summarize meetings and extract action items
-  - 🎓 **Tutor Copilot**: Learn concepts and get explanations
-  - 🎨 **Design Copilot**: Get UI/UX design suggestions and feedback
-  - 📋 **Workflow Copilot**: Plan sprints and optimize development workflows
+---
 
-- **Workspace & Projects**
-  - 💻 **Standalone Editor**: VS Code-like file-based coding interface
-  - 🔄 **Live Pair Programming**: Real-time collaborative coding sessions
-  - 📁 **Project Management**: Import, fork, and manage projects
-  - 🔗 **GitHub Integration**: Sync and manage GitHub repositories
-  - 📝 **Multi-file Editor**: Edit multiple files with tabs
+## 🎯 Features
 
-- **Community & Collaboration**
-  - 👥 **Developer Profiles**: Create and customize your profile
-  - 🌍 **Location Directory**: Find developers nearby (Snapchat-style)
-  - 💬 **Messaging**: Connect and message other developers
-  - 🚀 **Project Showcase**: Share and discover projects
-  - 🎉 **Events**: Join coding events and hackathons
+### 🤖 AI Copilots
 
-- **Analytics & Insights**
-  - 📊 **Dashboard**: Track coding metrics and productivity
-  - 🎯 **Vibe Score**: Monitor your coding vibe and energy
-  - ⏱️ **Focus Rate**: Track your focus and productivity
-  - 📈 **Weekly Coding Hours**: Monitor your coding time
-  - 📉 **Charts & Visualizations**: Visualize your progress
+| Copilot | Purpose |
+|---------|---------|
+| 🧩 **Code Copilot** | Write, debug & refactor code instantly |
+| 🧠 **Tutor Copilot** | Learn & understand coding concepts |
+| 🎥 **Meeting Copilot** | Summarize calls & extract key points |
+| 🎨 **Design Copilot** | Get real-time UI/UX feedback |
+| 📋 **Workflow Copilot** | Plan sprints & optimize workflows |
 
-### 🛠️ Technical Features
+**✨ Smart Features:**
+- Automatic fallback to mock data when API is unavailable
+- Context-aware responses based on user queries
+- Code examples with syntax highlighting
+- Follow-up suggestions for deeper learning
 
-- **Authentication**: Clerk integration for secure user management
-- **Database**: Supabase for real-time data and storage
-- **AI Integration**: OpenAI GPT API for all AI copilots
-- **Real-time Updates**: WebSocket support for live collaboration
-- **Responsive Design**: Mobile-first, works on all devices
-- **Dark Mode**: Built-in theme support
+### 💻 Workspace & Projects
 
-## 🏗️ Tech Stack
+- **Full VS Code-like editor** with syntax highlighting
+- **GitHub Integration** for repo import, fork & sync
+- **Multi-file support** with tabs and file explorer
+- **Live Pair Programming** mode with real-time collaboration
+- **Built-in Project Explorer** and Task Manager
+- **Standalone Editor** for offline coding
 
-### Frontend
-- **Framework**: React 18 + TypeScript
-- **Build Tool**: Vite
-- **UI Library**: shadcn/ui + Radix UI
-- **Styling**: Tailwind CSS
-- **Routing**: React Router v6
-- **State Management**: React Hooks + TanStack Query
-- **Animations**: Framer Motion
-- **Authentication**: Clerk
-- **Icons**: Lucide React
+### 👥 Community & Collaboration
 
-### Backend
-- **Runtime**: Node.js
-- **Framework**: Express.js
-- **AI**: OpenAI GPT API (gpt-3.5-turbo, gpt-4)
-- **Database**: Supabase
-- **CORS**: Configured for production
+- **Customizable Developer Profiles** with GitHub integration
+- **Nearby Developer Map** (like Snapchat Snap Map for devs)
+- **Direct Messaging** between developers
+- **Project Showcases** and Hackathon Events
+- **Follow & Connect** features for networking
 
-### Development Tools
-- **Language**: TypeScript
-- **Linting**: ESLint
-- **Formatting**: Prettier (via ESLint)
-- **Version Control**: Git + GitHub
+### 📊 Analytics & Insights
+
+- **Coding Metrics Dashboard** with beautiful visualizations
+- **Vibe Score™** – Measure your energy & focus
+- **Focus Rate & Weekly Coding Hours** tracking
+- **Interactive Charts** powered by Recharts
+- **Customizable Metrics** – Add your own scores
+
+---
+
+## 🧩 Tech Stack
+
+### 🖥️ Frontend
+
+- **React 18** + **TypeScript** – Modern UI framework
+- **Vite** – Lightning-fast build tool
+- **Tailwind CSS** + **shadcn/ui** + **Radix UI** – Beautiful, accessible components
+- **React Router v6** – Client-side routing
+- **Framer Motion** – Smooth animations
+- **Clerk** – Authentication & user management
+- **TanStack Query** – Powerful data fetching
+- **Supabase** – Real-time database & storage
+- **Lucide React** – Beautiful icons
+
+### ⚙️ Backend
+
+- **Node.js** + **Express.js** – Robust server framework
+- **Supabase** – Database & real-time features
+- **OpenAI GPT API** – Copilot intelligence (gpt-3.5-turbo, gpt-4)
+- **WebSockets** – Live collaboration support
+- **CORS** – Cross-origin resource sharing
+
+### 🧰 Development Tools
+
+- **TypeScript** – Type-safe development
+- **ESLint** + **Prettier** – Code quality
+- **Git** + **GitHub** – Version control
+- **Vercel** – Frontend deployment
+- **Render** – Backend hosting
+
+---
 
 ## 📋 Prerequisites
 
-Before you begin, ensure you have the following installed:
+Make sure you have:
 
-- **Node.js** 18+ ([Install with nvm](https://github.com/nvm-sh/nvm))
-- **npm** or **yarn** or **pnpm**
+- **Node.js** ≥ 18 ([Install with nvm](https://github.com/nvm-sh/nvm))
+- **npm** / **yarn** / **pnpm**
 - **Git**
+
+---
 
 ## 🚀 Installation
 
-### 1. Clone the Repository
+### 1️⃣ Clone the repository
 
 ```bash
 git clone https://github.com/jharajiv16/VibeXCraft.git
 cd VibeXCraft
 ```
 
-### 2. Install Dependencies
+### 2️⃣ Install dependencies
 
 ```bash
 # Install frontend dependencies
@@ -126,9 +146,9 @@ npm install
 cd ..
 ```
 
-### 3. Set Up Environment Variables
+### 3️⃣ Set up environment variables
 
-#### Frontend (.env)
+#### Frontend `.env`
 
 Create a `.env` file in the root directory:
 
@@ -137,17 +157,17 @@ Create a `.env` file in the root directory:
 VITE_API_URL=http://localhost:3001
 
 # Clerk Authentication
-VITE_CLERK_PUBLISHABLE_KEY=pk_test_your_clerk_key_here
+VITE_CLERK_PUBLISHABLE_KEY=pk_test_your_key_here
 
 # Supabase Configuration
-VITE_SUPABASE_URL=https://your-project.supabase.co
-VITE_SUPABASE_PUBLISHABLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+VITE_SUPABASE_URL=https://yourproject.supabase.co
+VITE_SUPABASE_PUBLISHABLE_KEY=your_public_key_here
 
 # GitHub OAuth (Optional)
 VITE_GITHUB_CLIENT_ID=your_github_client_id_here
 ```
 
-#### Backend (server/.env)
+#### Backend `server/.env`
 
 Create a `.env` file in the `server` directory:
 
@@ -157,15 +177,15 @@ NODE_ENV=development
 PORT=3001
 
 # OpenAI API Configuration
-OPENAI_API_KEY=sk-your_openai_api_key_here
+OPENAI_API_KEY=sk-your_openai_key_here
 OPENAI_MODEL=gpt-3.5-turbo
 
-# CORS Configuration (for production)
+# CORS Configuration
 CORS_ORIGIN=http://localhost:8080
 FRONTEND_URL=http://localhost:8080
 ```
 
-### 4. Get API Keys
+### 4️⃣ Get API Keys
 
 #### OpenAI API Key
 1. Go to [OpenAI Platform](https://platform.openai.com/)
@@ -187,42 +207,45 @@ FRONTEND_URL=http://localhost:8080
 4. Copy **URL** and **anon/public key**
 5. Add them to `.env` as `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY`
 
-#### GitHub OAuth (Optional)
-1. Go to [GitHub Developer Settings](https://github.com/settings/developers)
-2. Create a new OAuth App
-3. Set **Authorization callback URL**: `http://localhost:8080/auth/github/callback`
-4. Copy the **Client ID**
-5. Add it to `.env` as `VITE_GITHUB_CLIENT_ID`
-
-## 🏃 Development
-
-### Start Development Server
+### 5️⃣ Start the development servers
 
 ```bash
-# Start frontend (runs on http://localhost:8080)
-npm run dev
-
-# Start backend (runs on http://localhost:3001)
+# Start backend (in one terminal)
 cd server
 npm start
+
+# Start frontend (in another terminal)
+npm run dev
 ```
 
-### Available Scripts
+The app will be available at:
+- **Frontend**: http://localhost:8080
+- **Backend API**: http://localhost:3001
+
+---
+
+## 🏃 Development Commands
+
+### Frontend
 
 ```bash
-# Frontend
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run preview      # Preview production build
-npm run lint         # Run ESLint
-npm run deploy       # Deploy to Vercel (production)
-npm run deploy:preview # Deploy to Vercel (preview)
-
-# Backend
-cd server
-npm start            # Start production server
-npm run dev          # Start development server with watch mode
+npm run dev         # Start development server
+npm run build       # Build for production
+npm run preview     # Preview production build
+npm run lint        # Run ESLint
+npm run deploy      # Deploy to Vercel (production)
+npm run deploy:preview  # Deploy to Vercel (preview)
 ```
+
+### Backend
+
+```bash
+cd server
+npm run dev         # Start backend (watch mode)
+npm start           # Start production server
+```
+
+---
 
 ## 🚀 Deployment
 
@@ -233,125 +256,57 @@ npm run dev          # Start development server with watch mode
 
 See [QUICK_DEPLOY.md](./QUICK_DEPLOY.md) for step-by-step instructions.
 
-### Deployment Options
+### Deployment Platforms
 
-1. **Vercel (Frontend) + Render (Backend)** - ⭐ Recommended
-   - See [DEPLOY_FRONTEND.md](./DEPLOY_FRONTEND.md) and [DEPLOY_BACKEND.md](./DEPLOY_BACKEND.md)
+| Layer | Recommended Platform | Alternative |
+|-------|---------------------|-------------|
+| Frontend | Vercel | Netlify |
+| Backend | Render | Railway |
 
-2. **Netlify (Frontend) + Railway (Backend)**
-   - See [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)
+### Detailed Guides
 
-3. **Full Stack on Render**
-   - Uses `render.yaml` for both services
-   - See [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)
-
-### Vercel Deployment (Frontend)
-
-1. **Install Vercel CLI** (optional)
-   ```bash
-   npm i -g vercel
-   ```
-
-2. **Deploy via Dashboard**
-   - Go to [Vercel Dashboard](https://vercel.com/dashboard)
-   - Click "Add New Project"
-   - Import your GitHub repository
-   - Vercel will auto-detect Vite
-   - Add environment variables
-   - Click "Deploy"
-
-3. **Deploy via CLI**
-   ```bash
-   vercel login
-   vercel --prod
-   ```
-
-### Render Deployment (Backend)
-
-1. **Go to Render Dashboard**
-   - Visit [Render Dashboard](https://render.com/dashboard)
-   - Sign up or log in
-
-2. **Create Web Service**
-   - Click "New +" → "Web Service"
-   - Connect your GitHub repository
-   - Select `server` as root directory
-   - Set build command: `npm install`
-   - Set start command: `npm start`
-   - Add environment variables
-   - Click "Create Web Service"
-
-3. **Update CORS**
-   - Add your frontend URL to `CORS_ORIGIN` environment variable
-   - Redeploy backend
+- [QUICK_DEPLOY.md](./QUICK_DEPLOY.md) – Quick deployment guide
+- [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md) – Comprehensive deployment guide
+- [DEPLOY_FRONTEND.md](./DEPLOY_FRONTEND.md) – Frontend deployment
+- [DEPLOY_BACKEND.md](./DEPLOY_BACKEND.md) – Backend deployment
+- [VERCEL_DEPLOY_STEPS.md](./VERCEL_DEPLOY_STEPS.md) – Vercel-specific guide
 
 ### Environment Variables for Production
 
 #### Frontend (Vercel)
-- `VITE_API_URL` - Your backend URL (e.g., `https://vibexcraft-backend.onrender.com`)
-- `VITE_CLERK_PUBLISHABLE_KEY` - Your Clerk publishable key
-- `VITE_SUPABASE_URL` - Your Supabase project URL
-- `VITE_SUPABASE_PUBLISHABLE_KEY` - Your Supabase anon key
-- `VITE_GITHUB_CLIENT_ID` - Your GitHub OAuth client ID
+- `VITE_API_URL` – Your backend URL (e.g., `https://vibexcraft-backend.onrender.com`)
+- `VITE_CLERK_PUBLISHABLE_KEY` – Your Clerk publishable key
+- `VITE_SUPABASE_URL` – Your Supabase project URL
+- `VITE_SUPABASE_PUBLISHABLE_KEY` – Your Supabase anon key
+- `VITE_GITHUB_CLIENT_ID` – Your GitHub OAuth client ID
 
 #### Backend (Render)
-- `NODE_ENV` - `production`
-- `PORT` - `10000` (Render's default)
-- `OPENAI_API_KEY` - Your OpenAI API key
-- `OPENAI_MODEL` - `gpt-3.5-turbo` (or `gpt-4`)
-- `CORS_ORIGIN` - Your frontend URL (e.g., `https://vibexcraft.vercel.app`)
-- `FRONTEND_URL` - Your frontend URL
+- `NODE_ENV` – `production`
+- `PORT` – `10000` (Render's default)
+- `OPENAI_API_KEY` – Your OpenAI API key
+- `OPENAI_MODEL` – `gpt-3.5-turbo` (or `gpt-4`)
+- `CORS_ORIGIN` – Your frontend URL (e.g., `https://vibe-x-craft.vercel.app`)
+- `FRONTEND_URL` – Your frontend URL
 
-## 📚 Documentation
+---
 
-- [QUICK_DEPLOY.md](./QUICK_DEPLOY.md) - Quick deployment guide
-- [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md) - Comprehensive deployment guide
-- [DEPLOY_FRONTEND.md](./DEPLOY_FRONTEND.md) - Frontend deployment
-- [DEPLOY_BACKEND.md](./DEPLOY_BACKEND.md) - Backend deployment
-- [VERCEL_DEPLOY_STEPS.md](./VERCEL_DEPLOY_STEPS.md) - Vercel deployment steps
-- [FIX_VERCEL_DEPLOYMENT.md](./FIX_VERCEL_DEPLOYMENT.md) - Troubleshooting Vercel deployment
-- [COPILOTS_SETUP.md](./COPILOTS_SETUP.md) - AI Copilots setup guide
-- [server/README.md](./server/README.md) - Backend API documentation
+## 🧪 API Overview
 
-## 🛣️ Project Structure
+### Base URL
+- **Development**: `http://localhost:3001`
+- **Production**: `https://your-backend-url.onrender.com`
 
-```
-VibeXCraft/
-├── src/                    # Frontend source code
-│   ├── components/         # React components
-│   ├── pages/              # Page components
-│   ├── lib/                # Utility functions and API clients
-│   ├── hooks/              # Custom React hooks
-│   ├── integrations/       # Third-party integrations (Supabase, Clerk)
-│   └── assets/             # Static assets
-├── server/                 # Backend API
-│   ├── controllers/        # API controllers
-│   ├── routes/             # API routes
-│   ├── middleware/         # Express middleware
-│   └── index.js            # Server entry point
-├── public/                 # Public assets
-├── dist/                   # Build output (generated)
-└── node_modules/           # Dependencies (generated)
-```
+### Endpoints
 
-## 🔌 API Endpoints
-
-### Backend API (Base URL: `http://localhost:3001`)
-
-#### Health Check
-```
-GET /health
-```
-
-#### AI Copilots
-```
-POST /api/copilots/code       # Code Copilot
-POST /api/copilots/meeting    # Meeting Copilot
-POST /api/copilots/tutor      # Tutor Copilot
-POST /api/copilots/design     # Design Copilot
-POST /api/copilots/workflow   # Workflow Copilot
-POST /api/agent/gemini        # General AI Agent
-```
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/health` | GET | Health check |
+| `/api/copilots/code` | POST | Code Copilot |
+| `/api/copilots/tutor` | POST | Tutor Copilot |
+| `/api/copilots/design` | POST | Design Copilot |
+| `/api/copilots/meeting` | POST | Meeting Copilot |
+| `/api/copilots/workflow` | POST | Workflow Copilot |
+| `/api/agent/gemini` | POST | General AI Agent |
 
 ### Example Request
 
@@ -359,7 +314,7 @@ POST /api/agent/gemini        # General AI Agent
 curl -X POST http://localhost:3001/api/copilots/code \
   -H "Content-Type: application/json" \
   -d '{
-    "message": "How do I create a React component?",
+    "message": "Explain React components",
     "language": "javascript"
   }'
 ```
@@ -369,61 +324,233 @@ curl -X POST http://localhost:3001/api/copilots/code \
 ```json
 {
   "success": true,
-  "response": "To create a React component...",
+  "response": "React components are reusable pieces of UI...",
   "copilot": "Code Copilot"
 }
 ```
 
-## 🧪 Testing
+---
 
-```bash
-# Run linting
-npm run lint
+## 🧭 Project Structure
 
-# Build for production (test build)
-npm run build
-
-# Preview production build
-npm run preview
 ```
+VibeXCraft/
+├── src/                    # Frontend source code
+│   ├── components/         # React components
+│   │   ├── ui/            # shadcn/ui components
+│   │   ├── livePair/      # Live pair programming components
+│   │   └── ...            # Other components
+│   ├── pages/             # Page components
+│   │   ├── Home.tsx
+│   │   ├── Dashboard.tsx
+│   │   ├── Copilots.tsx
+│   │   ├── Workspace.tsx
+│   │   └── ...
+│   ├── lib/               # Utility functions
+│   │   ├── copilots.ts   # API client for copilots
+│   │   ├── mockCopilot.ts # Mock data for offline mode
+│   │   └── utils.ts
+│   ├── hooks/             # Custom React hooks
+│   ├── integrations/      # Third-party integrations
+│   │   └── supabase/      # Supabase client
+│   └── assets/            # Static assets
+├── server/                # Backend API
+│   ├── controllers/       # API controllers
+│   │   └── copilotController.js
+│   ├── routes/            # API routes
+│   │   └── copilotRoutes.js
+│   ├── middleware/        # Express middleware
+│   │   ├── errorHandler.js
+│   │   ├── logger.js
+│   │   └── validator.js
+│   └── index.js           # Server entry point
+├── public/                # Public assets
+├── dist/                  # Build output (generated)
+└── docs/                  # Documentation files
+```
+
+---
+
+## 📚 Documentation
+
+### Setup Guides
+- [QUICK_DEPLOY.md](./QUICK_DEPLOY.md) – Quick deployment guide
+- [STEP_BY_STEP_FIX.md](./STEP_BY_STEP_FIX.md) – Troubleshooting guide
+- [YOUR_VERCEL_SETUP.md](./YOUR_VERCEL_SETUP.md) – Vercel setup guide
+
+### Feature Guides
+- [COPILOTS_SETUP.md](./COPILOTS_SETUP.md) – AI Copilots setup
+- [server/README.md](./server/README.md) – Backend API documentation
+- [server/OPENAI_SETUP.md](./server/OPENAI_SETUP.md) – OpenAI integration
+
+### Deployment Guides
+- [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md) – Comprehensive deployment
+- [DEPLOY_FRONTEND.md](./DEPLOY_FRONTEND.md) – Frontend deployment
+- [DEPLOY_BACKEND.md](./DEPLOY_BACKEND.md) – Backend deployment
+- [VERCEL_DEPLOY_STEPS.md](./VERCEL_DEPLOY_STEPS.md) – Vercel steps
+
+### Troubleshooting
+- [FIX_CORS_ERROR.md](./FIX_CORS_ERROR.md) – CORS error fixes
+- [URGENT_FIX_CORS.md](./URGENT_FIX_CORS.md) – Quick CORS fix
+- [FIX_VERCEL_DEPLOYMENT.md](./FIX_VERCEL_DEPLOYMENT.md) – Vercel issues
+
+---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please follow these steps:
+We ❤️ contributions! Here's how you can help:
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+### Getting Started
+
+1. **Fork the repository**
+   ```bash
+   git clone https://github.com/your-username/VibeXCraft.git
+   cd VibeXCraft
+   ```
+
+2. **Create your feature branch**
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
+
+3. **Make your changes**
+   - Write clean, documented code
+   - Follow the existing code style
+   - Add tests if applicable
+
+4. **Commit your work**
+   ```bash
+   git commit -m "Add amazing feature"
+   ```
+
+5. **Push and open a PR**
+   ```bash
+   git push origin feature/amazing-feature
+   ```
+   Then open a Pull Request on GitHub!
+
+### Contribution Guidelines
+
+- Follow the existing code style
+- Write meaningful commit messages
+- Add documentation for new features
+- Test your changes thoroughly
+- Be respectful and constructive in discussions
+
+---
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+---
 
 ## 🙏 Acknowledgments
 
-- [shadcn/ui](https://ui.shadcn.com/) - Beautiful UI components
-- [Clerk](https://clerk.com/) - Authentication
-- [Supabase](https://supabase.com/) - Database and real-time features
-- [OpenAI](https://openai.com/) - AI capabilities
-- [Vercel](https://vercel.com/) - Deployment platform
-- [Render](https://render.com/) - Backend hosting
+Special thanks to these amazing tools, platforms, and communities that made VibeXCraft possible:
 
-## 📞 Support
+### 🎨 UI & Design
+- **[shadcn/ui](https://ui.shadcn.com/)** – Beautiful, accessible React components
+- **[Radix UI](https://www.radix-ui.com/)** – Unstyled, accessible component primitives
+- **[Tailwind CSS](https://tailwindcss.com/)** – Utility-first CSS framework
+- **[Framer Motion](https://www.framer.com/motion/)** – Production-ready motion library
+- **[Lucide](https://lucide.dev/)** – Beautiful & consistent icon toolkit
 
-For support, please open an issue on [GitHub](https://github.com/jharajiv16/VibeXCraft/issues) or contact the maintainers.
+### 🔐 Authentication & User Management
+- **[Clerk](https://clerk.com/)** – Complete user management and authentication
 
-## 🌟 Star History
+### 🗄️ Database & Backend
+- **[Supabase](https://supabase.com/)** – Open source Firebase alternative
+- **[Express.js](https://expressjs.com/)** – Fast, unopinionated web framework
+- **[Node.js](https://nodejs.org/)** – JavaScript runtime
 
-If you find this project helpful, please consider giving it a star ⭐ on GitHub!
+### 🤖 AI & Machine Learning
+- **[OpenAI](https://openai.com/)** – GPT API for AI copilots
+- **[OpenAI Node.js SDK](https://github.com/openai/openai-node)** – Official OpenAI SDK
+
+### 🚀 Deployment & Hosting
+- **[Vercel](https://vercel.com/)** – Frontend deployment platform
+- **[Render](https://render.com/)** – Backend hosting platform
+- **[Netlify](https://www.netlify.com/)** – Alternative deployment option
+- **[Railway](https://railway.app/)** – Alternative backend hosting
+
+### 🛠️ Development Tools
+- **[Vite](https://vitejs.dev/)** – Next generation frontend tooling
+- **[TypeScript](https://www.typescriptlang.org/)** – Typed JavaScript
+- **[React](https://react.dev/)** – UI library
+- **[React Router](https://reactrouter.com/)** – Declarative routing
+- **[TanStack Query](https://tanstack.com/query)** – Powerful data synchronization
+
+### 📊 Data Visualization
+- **[Recharts](https://recharts.org/)** – Composable charting library
+
+### 🎯 Code Quality
+- **[ESLint](https://eslint.org/)** – JavaScript linter
+- **[Prettier](https://prettier.io/)** – Code formatter
+
+### 📦 Package Management
+- **[npm](https://www.npmjs.com/)** – Package manager
+- **[GitHub](https://github.com/)** – Version control and collaboration
+
+### 🌐 Community & Inspiration
+- **Google Workspace** – Inspiration for modularity
+- **Replit** – Inspiration for developer energy
+- **VS Code** – Editor interface inspiration
+- **GitHub** – Project management inspiration
+
+### 👥 Contributors
+
+Thank you to all contributors who have helped make VibeXCraft better!
+
+- **[Rajiv Ranjan Jha](https://github.com/jharajiv16)** – Project Creator & Lead Developer
+- **The Binary Brains Team** – Core development team
+
+---
+
+## 🌟 Star the Repo
+
+If you like what we're building —
+
+⭐ **Star this repo** to show your support and follow our journey!
+
+Your stars help us:
+- Reach more developers
+- Get feedback and suggestions
+- Build a stronger community
+- Continue improving VibeXCraft
+
+---
+
+## 📞 Support & Contact
+
+- **GitHub Issues**: [Report bugs or request features](https://github.com/jharajiv16/VibeXCraft/issues)
+- **Discussions**: [Join the conversation](https://github.com/jharajiv16/VibeXCraft/discussions)
+- **Email**: [Contact the team](mailto:support@vibexcraft.com)
 
 ---
 
 <div align="center">
 
-**Made with ❤️ by the VibeXCraft Team**
+### 💡 Crafted with passion by
 
-[Website](https://vibexcraft.vercel.app) • [Documentation](./docs) • [GitHub](https://github.com/jharajiv16/VibeXCraft)
+# 🧠 The Binary Brains
+
+**Creators of VibeXCraft**
+
+---
+
+[🌐 Website](https://vibe-x-craft.vercel.app) • [📘 Documentation](./docs) • [🐙 GitHub](https://github.com/jharajiv16/VibeXCraft) • [📧 Contact](mailto:support@vibexcraft.com)
+
+---
+
+**"Code. Create. Collaborate. Craft your vibe."**
+
+Made with ❤️ by developers, for developers
+
+---
+
+[![GitHub stars](https://img.shields.io/github/stars/jharajiv16/VibeXCraft?style=social)](https://github.com/jharajiv16/VibeXCraft/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/jharajiv16/VibeXCraft?style=social)](https://github.com/jharajiv16/VibeXCraft/network/members)
+[![GitHub watchers](https://img.shields.io/github/watchers/jharajiv16/VibeXCraft?style=social)](https://github.com/jharajiv16/VibeXCraft/watchers)
 
 </div>
