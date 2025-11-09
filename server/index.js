@@ -25,12 +25,16 @@ const allowedOrigins = [
   process.env.FRONTEND_URL,
   process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null,
   process.env.NETLIFY_URL ? `https://${process.env.NETLIFY_URL}` : null,
+  // Allow all Vercel deployments
+  'https://vibe-x-craft-sdcsdc.vercel.app',
+  'https://vibe-x-craft.vercel.app',
 ].filter(Boolean);
 
 // Allow all Vercel domains (for flexibility)
 const isVercelDomain = (origin) => {
   if (!origin) return false;
-  return origin.includes('.vercel.app') || origin.includes('vercel.app');
+  // Allow any *.vercel.app domain
+  return origin.includes('.vercel.app') || origin.includes('vercel.app') || origin.match(/https?:\/\/[^/]+\.vercel\.app/);
 };
 
 // Allow all Netlify domains
