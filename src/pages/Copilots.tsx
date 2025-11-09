@@ -6,6 +6,7 @@ import { Bot, Send, Loader2 } from "lucide-react";
 import Footer from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
 import { callCodeCopilot } from "@/lib/copilots";
+import { generateMockResponse, getQuickQuestions } from "@/lib/mockCopilot";
 
 export default function Copilots() {
   const { toast } = useToast();
@@ -13,6 +14,10 @@ export default function Copilots() {
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
   const [conversation, setConversation] = useState<Array<{role: 'user' | 'assistant', content: string}>>([]);
+  const [useMockData, setUseMockData] = useState(false);
+  
+  // Quick questions for code copilot
+  const quickQuestions = getQuickQuestions('code');
 
   const handleSendMessage = async () => {
     if (!message.trim()) {
@@ -32,6 +37,7 @@ export default function Copilots() {
     const newConversation = [...conversation, { role: 'user' as const, content: userMessage }];
     setConversation(newConversation);
 
+    // Try API first, fallback to mock data
     try {
       const result = await callCodeCopilot(userMessage);
 
@@ -39,45 +45,84 @@ export default function Copilots() {
         const assistantResponse = result.response;
         setResponse(assistantResponse);
         setConversation([...newConversation, { role: 'assistant' as const, content: assistantResponse }]);
+        setUseMockData(false); // API is working
         toast({
           title: "Success",
           description: "AI Copilot responded!",
         });
       } else {
-        const errorMsg = result.error || "Failed to get response";
-        throw new Error(errorMsg);
+        // API failed, use mock data
+        throw new Error("API not available");
       }
     } catch (error) {
-      const errorMsg = error instanceof Error ? error.message : "Failed to call copilot";
+      // Use mock data when API is not available
+      console.log("Using mock data - API not available");
+      setUseMockData(true);
       
-      // Remove any Gemini references from error messages
-      let cleanedErrorMsg = errorMsg
-        .replace(/Gemini/gi, 'OpenAI')
-        .replace(/GEMINI/gi, 'OPENAI')
-        .replace(/gemini/gi, 'openai')
-        .replace(/makersuite\.google\.com/gi, 'platform.openai.com')
-        .replace(/GEMINI_API_KEY/gi, 'OPENAI_API_KEY');
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 800 + Math.random() * 1200));
       
-      // Better error message for OpenAI API issues
-      let errorResponse = `❌ Error: ${cleanedErrorMsg}\n\n`;
+      const mockResponse = generateMockResponse(userMessage, 'code');
+      const assistantResponse = mockResponse.response;
       
-      if (cleanedErrorMsg.includes('API key') || cleanedErrorMsg.includes('OPENAI_API_KEY') || cleanedErrorMsg.includes('not set') || cleanedErrorMsg.includes('invalid')) {
-        errorResponse += `⚠️ OpenAI API Key Issue\n\n`;
-        errorResponse += `Make sure your OpenAI API key is set in server/.env file:\n`;
-        errorResponse += `OPENAI_API_KEY=your_api_key_here\n\n`;
-        errorResponse += `Get your API key from: https://platform.openai.com/api-keys\n\n`;
-        errorResponse += `After adding the key, restart the server:\ncd server\nnpm start\n\n`;
-      }
+      setResponse(assistantResponse);
+      setConversation([...newConversation, { role: 'assistant' as const, content: assistantResponse }]);
       
-      errorResponse += `💡 Make sure the backend server is running on port 3001.\n\n`;
-      errorResponse += `To start the server, run:\ncd server\nnpm start`;
-      
-      setResponse(errorResponse);
-      setConversation([...newConversation, { role: 'assistant' as const, content: errorResponse }]);
       toast({
-        title: "Error",
-        description: cleanedErrorMsg.length > 100 ? cleanedErrorMsg.substring(0, 100) + '...' : cleanedErrorMsg,
-        variant: "destructive",
+        title: "Using Mock Data",
+        description: "API not available. Showing mock response.",
+        variant: "default",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  const handleQuickQuestion = async (question: string) => {
+    if (!question.trim()) return;
+    
+    setMessage("");
+    setLoading(true);
+
+    // Add user message to conversation
+    const newConversation = [...conversation, { role: 'user' as const, content: question }];
+    setConversation(newConversation);
+
+    // Try API first, fallback to mock data
+    try {
+      const result = await callCodeCopilot(question);
+
+      if (result.success) {
+        const assistantResponse = result.response;
+        setResponse(assistantResponse);
+        setConversation([...newConversation, { role: 'assistant' as const, content: assistantResponse }]);
+        setUseMockData(false); // API is working
+        toast({
+          title: "Success",
+          description: "AI Copilot responded!",
+        });
+      } else {
+        // API failed, use mock data
+        throw new Error("API not available");
+      }
+    } catch (error) {
+      // Use mock data when API is not available
+      console.log("Using mock data - API not available");
+      setUseMockData(true);
+      
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 800 + Math.random() * 1200));
+      
+      const mockResponse = generateMockResponse(question, 'code');
+      const assistantResponse = mockResponse.response;
+      
+      setResponse(assistantResponse);
+      setConversation([...newConversation, { role: 'assistant' as const, content: assistantResponse }]);
+      
+      toast({
+        title: "Using Mock Data",
+        description: "API not available. Showing mock response.",
+        variant: "default",
       });
     } finally {
       setLoading(false);
@@ -121,23 +166,26 @@ export default function Copilots() {
                 </p>
               </div>
               <div className="flex flex-wrap gap-2 justify-center mt-6">
-                {[
-                  "How do I create a React component?",
-                  "Suggest a color palette for dark theme",
-                  "Explain JavaScript closures",
-                  "Plan a sprint for a web app",
-                ].map((suggestion, i) => (
+                {quickQuestions.map((suggestion, i) => (
                   <Button
                     key={i}
                     variant="outline"
                     size="sm"
-                    onClick={() => setMessage(suggestion)}
-                    className="text-xs"
+                    onClick={() => handleQuickQuestion(suggestion)}
+                    className="text-xs hover:bg-primary/10"
                   >
                     {suggestion}
                   </Button>
                 ))}
               </div>
+              
+              {useMockData && (
+                <div className="mt-4 p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
+                  <p className="text-xs text-yellow-600 dark:text-yellow-400 text-center">
+                    ⚠️ Using mock data - API not available. Responses are simulated.
+                  </p>
+                </div>
+              )}
             </div>
           ) : (
             conversation.map((msg, i) => (
