@@ -1,5 +1,9 @@
 # 🚀 VibeXCraft
 
+
+LIVE DEMO -  vibe-x-craft-sdcsdc.vercel.app 
+
+
 <div align="center">
 
 **🧠 The Ultimate AI-Powered Workspace for Coders & Creators**
@@ -502,7 +506,6 @@ Special thanks to these amazing tools, platforms, and communities that made Vibe
 
 Thank you to all contributors who have helped make VibeXCraft better!
 
-- **[Rajiv Ranjan Jha](https://github.com/jharajiv16)** – Project Creator & Lead Developer
 - **The Binary Brains Team** – Core development team
 
 ---
